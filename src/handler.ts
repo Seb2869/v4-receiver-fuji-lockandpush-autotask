@@ -22,6 +22,7 @@ export async function handler(event: any) {
       chainId: 80001,
       network: 'polygon-mumbai',
       apiKey: infuraApiKey,
+      providerUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
       speed: "fast",
       gasLimit: 50000,
       execute: false,
