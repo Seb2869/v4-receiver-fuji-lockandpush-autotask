@@ -1,12 +1,13 @@
 import { Relayer } from 'defender-relay-client'
 import { L2DrawAndPrizeDistributionPush } from 'v4-autotask-lib'
 import contracts from '@pooltogether/v4-testnet/testnet.json'
+import { ConfigWithL2 } from 'v4-autotask-lib/dist/types';
 const debug = require('debug')('pt-autotask')
 
 export async function handler(event: any) {
   const { infuraApiKey } = event.secrets;
   const relayer = new Relayer(event);
-  const config = {
+  const config: ConfigWithL2 = {
     speed: "fast",
     gasLimit: 50000,
     execute: false,
@@ -28,6 +29,7 @@ export async function handler(event: any) {
   if (L2Error && L2Status == -1) console.log(L2Error);
   if (L2Status == 1) {
     console.log('Executing:', L2Msg)
+    console.log(L2Transaction.data, 'L2Transaction.data')
     let L2tx = await relayer.sendTransaction({
       data: L2Transaction.data,
       to: L2Transaction.to,
