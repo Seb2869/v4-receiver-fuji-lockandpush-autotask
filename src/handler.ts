@@ -1,42 +1,48 @@
 import { Relayer } from 'defender-relay-client'
-import { L2DrawAndPrizeDistributionPush } from 'v4-autotask-lib'
-import contracts from '@pooltogether/v4-testnet/testnet.json'
-import { ConfigWithL2 } from 'v4-autotask-lib/dist/types';
-const debug = require('debug')('pt-autotask')
+import { receiverDrawLockAndNetworkTotalSupplyPush } from 'v4-autotask-lib'
+import contracts from './contracts.json'
 
 export async function handler(event: any) {
-  const { infuraApiKey } = event.secrets;
   const relayer = new Relayer(event);
-  const config: ConfigWithL2 = {
-    speed: "fast",
-    gasLimit: 50000,
-    execute: false,
-    L1: {
+  const config = {
+    beaconChain: {
       chainId: 4,
-      providerUrl: `https://rinkeby.infura.io/v3/${infuraApiKey}`,
+      providerUrl: `https://rinkeby.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
     },
-    L2: {
+    targetReceiverChain: {
       chainId: 43113,
-      providerUrl: 'https://api.avax-test.network/ext/bc/C/rpc',
+      providerUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
     },
+    allPrizePoolNetworkChains: [
+      {
+        chainId: 4,
+        providerUrl: `https://rinkeby.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
+      },
+      {
+        chainId: 80001,
+        providerUrl: `https://polygon-mumbai.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
+      },
+      {
+        chainId: 43113,
+        providerUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
+      }
+    ]
   }
 
-  const { msg: L2Msg, err: L2Error, status: L2Status, transaction: L2Transaction } = await L2DrawAndPrizeDistributionPush(contracts, config, relayer)
-  if (L2Error && L2Status == -1) console.log(L2Error);
-  debug("L2Msg:", L2Msg)
-  debug("L2Error:", L2Error)
-  debug("L2Status:", L2Status)
-  if (L2Error && L2Status == -1) console.log(L2Error);
-  if (L2Status == 1) {
-    console.log('Executing:', L2Msg)
-    console.log(L2Transaction.data, 'L2Transaction.data')
-    let L2tx = await relayer.sendTransaction({
-      data: L2Transaction.data,
-      to: L2Transaction.to,
-      gasLimit: 500000,
-      speed: 'fast'
-    });
-    console.log('Hash:', L2tx.hash)
-    console.log('Completed:', L2Msg)
+  try {
+    const transactionPopulated = await receiverDrawLockAndNetworkTotalSupplyPush(contracts, config)
+    if (transactionPopulated) {
+      let transactionSentToNetwork = await relayer.sendTransaction({
+        data: transactionPopulated.data,
+        to: transactionPopulated.to,
+        gasLimit: 500000,
+        speed: 'fast'
+      });
+      console.log('TransactionHash:', transactionSentToNetwork.hash)
+    } else {
+      throw new Error('DrawBeacon: Transaction not populated')
+    }
+  } catch (error) {
+    console.log(error)
   }
 }
