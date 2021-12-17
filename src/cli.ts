@@ -1,20 +1,16 @@
-// @ts-nocheck
 import { handler } from './handler'
 
-// To run locally (this code will not be executed in Autotasks)
 if (require.main === module) {
   const {
-    L1_RELAYER_API_KEY: L1RelayerAbiKey,
-    L1_RELAYER_SECRET: L1RelayerSecret,
-    L2_RELAYER_API_KEY: L2RelayerApiKey,
-    L2_RELAYER_SECRET: L2RelayerSecret,
+    RELAYER_API_KEY,
+    RELAYER_API_SECRET,
     INFURA_API_KEY: infuraApiKey
   } = process.env;
   handler({
-    apiKey: L1RelayerAbiKey,
-    apiSecret: L1RelayerSecret,
+    apiKey: RELAYER_API_KEY,
+    apiSecret: RELAYER_API_SECRET,
     secrets: {
-      L2RelayerApiKey, L2RelayerSecret, infuraApiKey
+      infuraApiKey
     }
   })
     .then(() => process.exit(0))

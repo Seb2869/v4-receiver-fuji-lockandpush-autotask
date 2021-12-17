@@ -1,7 +1,8 @@
 import { Relayer } from 'defender-relay-client'
-import { receiverDrawLockAndNetworkTotalSupplyPush } from 'v4-autotask-lib'
-import contracts from './contracts.json'
+import { receiverDrawLockAndNetworkTotalSupplyPush } from '@pooltogether/v4-autotask-lib'
+import { testnet as testnestContracts } from '@pooltogether/v4-pool-data'
 
+console.log(process.env.INFURA_API_KEY, "INF")
 export async function handler(event: any) {
   const relayer = new Relayer(event);
   const config = {
@@ -30,7 +31,7 @@ export async function handler(event: any) {
   }
 
   try {
-    const transactionPopulated = await receiverDrawLockAndNetworkTotalSupplyPush(contracts, config)
+    const transactionPopulated = await receiverDrawLockAndNetworkTotalSupplyPush(testnestContracts, config)
     if (transactionPopulated) {
       let transactionSentToNetwork = await relayer.sendTransaction({
         data: transactionPopulated.data,
