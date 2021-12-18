@@ -7,7 +7,7 @@ export async function handler(event: any) {
   const config = {
     beaconChain: {
       chainId: 4,
-      providerUrl: `https://rinkeby.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
+      providerUrl: `https://rinkeby.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
     },
     receiverChain: {
       chainId: 43113,
@@ -16,11 +16,11 @@ export async function handler(event: any) {
     allPrizePoolNetworkChains: [
       {
         chainId: 4,
-        providerUrl: `https://rinkeby.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
+        providerUrl: `https://rinkeby.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
       },
       {
         chainId: 80001,
-        providerUrl: `https://polygon-mumbai.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
+        providerUrl: `https://polygon-mumbai.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
       },
       {
         chainId: 43113,
