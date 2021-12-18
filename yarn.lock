@@ -638,14 +638,13 @@
   resolved "https://registry.yarnpkg.com/@pooltogether/pooltogether-rng-contracts/-/pooltogether-rng-contracts-1.4.0.tgz#310b9667a1123cfcce718aa6d8eba7c434a53c75"
   integrity sha512-dNgDpDsCMxUxaz8u6OfpjSBtMOdcp8QkLC3cwJ6E++4ux0qY2ON+ZqJEHIC3q4ZVJ4Xf6FikMJF0a8SVNtl8Zw==
 
-"@pooltogether/v4-autotask-lib@^0.1.0-beta.5":
-  version "0.1.0-beta.5"
-  resolved "https://registry.yarnpkg.com/@pooltogether/v4-autotask-lib/-/v4-autotask-lib-0.1.0-beta.5.tgz#cc44ce791fc7f9735d3855e1b6f56ec596235788"
-  integrity sha512-PfAAMauZ8mmrPQ7HN4OTn+C0oXlxl6x+8kYVJLI8+7NgUXi1mtI56aOOIEVBBNtYklW2NQpbqSvFlGRMOaT/Gg==
+"@pooltogether/v4-autotask-lib@^0.1.0-beta.6":
+  version "0.1.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@pooltogether/v4-autotask-lib/-/v4-autotask-lib-0.1.0-beta.6.tgz#0e8420c4db7c88c9856c31edcb07f2a79f57de3d"
+  integrity sha512-8GIH1gBPX0r5s8b9VL22wxa0H753WbduprEpORCvOVfX3Sej2XgNs/dxPjxVEXwBLVUnuvTQTQAm8Ck2vA+ELA==
   dependencies:
     "@pooltogether/v4-core" "^1.0.0-beta.2"
     ethers "^5.4.7"
-    luxon "^2.0.2"
 
 "@pooltogether/v4-core@1.0.0":
   version "1.0.0"
@@ -1319,11 +1318,6 @@ lodash@^4.17.19:
   version "4.17.21"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
-
-luxon@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.0.2.tgz#11f2cd4a11655fdf92e076b5782d7ede5bcdd133"
-  integrity sha512-ZRioYLCgRHrtTORaZX1mx+jtxKtKuI5ZDvHNAmqpUzGqSrR+tL4FVLn/CUGMA3h0+AKD1MAxGI5GnCqR5txNqg==
 
 magic-string@^0.25.7:
   version "0.25.7"

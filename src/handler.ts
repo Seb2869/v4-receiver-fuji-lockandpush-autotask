@@ -2,7 +2,6 @@ import { Relayer } from 'defender-relay-client'
 import { receiverDrawLockAndNetworkTotalSupplyPush } from '@pooltogether/v4-autotask-lib'
 import { testnet as testnestContracts } from '@pooltogether/v4-pool-data'
 
-console.log(process.env.INFURA_API_KEY, "INF")
 export async function handler(event: any) {
   const relayer = new Relayer(event);
   const config = {
@@ -10,7 +9,7 @@ export async function handler(event: any) {
       chainId: 4,
       providerUrl: `https://rinkeby.infura.io/v3/b81e24d29d1942b8bf04bf3c81ae3761`,
     },
-    targetReceiverChain: {
+    receiverChain: {
       chainId: 43113,
       providerUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
     },
