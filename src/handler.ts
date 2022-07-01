@@ -4,27 +4,39 @@ import { testnet as testnestContracts } from '@pooltogether/v4-pool-data'
 
 export async function handler(event: any) {
   const relayer = new Relayer(event);
+
+  const {
+    ethereumRinkebyProviderURL,
+    polygonMumbaiProviderURL,
+    avalancheFujiProviderURL,
+    optimismKovanProviderURL
+  } = event.secrets;
+
   const config = {
     beaconChain: {
       chainId: 4,
-      providerUrl: `https://rinkeby.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
+      providerUrl: ethereumRinkebyProviderURL,
     },
     receiverChain: {
       chainId: 43113,
-      providerUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
+      providerUrl: avalancheFujiProviderURL,
     },
     allPrizePoolNetworkChains: [
       {
         chainId: 4,
-        providerUrl: `https://rinkeby.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
+        providerUrl: ethereumRinkebyProviderURL,
       },
       {
         chainId: 80001,
-        providerUrl: `https://polygon-mumbai.infura.io/v3/0b68f87acec2479a9d6106ffb0f2c16d`,
+        providerUrl: polygonMumbaiProviderURL,
       },
       {
         chainId: 43113,
-        providerUrl: `https://api.avax-test.network/ext/bc/C/rpc`,
+        providerUrl: avalancheFujiProviderURL,
+      },
+      {
+        chainId: 69,
+        providerUrl: optimismKovanProviderURL,
       }
     ]
   }
